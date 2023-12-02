@@ -69,6 +69,7 @@ const TableRowHead = styled.tr`
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
+   
     
 `;
 
@@ -86,6 +87,8 @@ const TableFirstColumnHead = styled.th`
 const TableLastColumnHead = styled.th`
     padding:10px 0;
     column-count: 1.5;
+    text-align:center;
+    
    /* border:1px solid red; */
 `;
 
@@ -100,12 +103,17 @@ const StyledButton = styled.button`
 const StatusToggle = styled.div`
   display: flex;
   align-items: center;
+  text-decoration:center;
+   align-items:center
 `;
 
 const StatusSymbol = styled.span`
   font-size: 18px; /* Adjust the font size as needed */
-  margin-right: 5px; /* Add margin for spacing */
-  cursor: pointer;
+   margin-left: 10px;
+   text-decoration:center;
+   align-items:center;
+   /* Add margin for spacing */
+  cursor:pointer;
 
   &:hover {
     color: blue; /* Change color on hover if desired */
@@ -116,8 +124,8 @@ const StatusSymbol = styled.span`
 const ProductDetails = () => {
     const [data, setProductData] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
-    const [isApproved, setApproved] = useState(ProductData.status === 'approved');
-    const [isMissing, setMissing] = useState(ProductData.status === 'missing');
+    const [isApproved, setApproved] = useState();
+    const [isMissing, setMissing] = useState();
 
 
     // console.log(ProductData)
@@ -165,7 +173,7 @@ const ProductDetails = () => {
                       <TableColumnHead>Price</TableColumnHead>
                       <TableColumnHead>Quantity</TableColumnHead>
                       <TableColumnHead>Total</TableColumnHead>
-                      <TableLastColumnHead>Status of Product</TableLastColumnHead>
+                      <TableLastColumnHead>Status</TableLastColumnHead>
                   </TableRowHead>
               </thead>
               <tbody>
@@ -183,14 +191,15 @@ const ProductDetails = () => {
                           <td>{item.qantity}</td>
                           <td>{item.price * item.qantity}</td>
                          <td>
-                              <td><StatusToggle>
+                              <td ><StatusToggle>
                                   <StatusSymbol onClick={() => toggleStatus('approved')}>
-                                 ✅  ❌
+                                      ✔   
                                   </StatusSymbol>
                                   <StatusSymbol onClick={() => toggleStatus('missing')}>
-                                    
+                                      ✗
                                   </StatusSymbol>
-                                  <p>Status: {isApproved ? 'Approved' : isMissing ? 'Missing' : 'Unknown'}</p>
+                                  <p>Status: {isApproved ? 'Approved ✅' : isMissing ? 'Missing' : ""}</p>
+                                 
                               </StatusToggle></td>
                               
 
