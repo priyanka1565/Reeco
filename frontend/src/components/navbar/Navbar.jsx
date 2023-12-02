@@ -19,7 +19,7 @@ const Container1 = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    /* color:white; */
+   
 `;
 
 const Container2 = styled.div`
@@ -32,7 +32,7 @@ const Container2 = styled.div`
 
 const AIcon = styled.span`
   font-size  :10px ;
-  /* color:white; */
+  
 `;
 
 const CartIcon = styled.span`
