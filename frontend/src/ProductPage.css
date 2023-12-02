@@ -1,0 +1,37 @@
+/* DataTable.css */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #f2f2f2;
+}
+
+/* DataTable.css or any other CSS file */
+.product-info {
+    display: flex;
+    align-items: center;
+    /* Align items vertically in the container */
+}
+
+.product-image {
+    width: 50px;
+    /* Set the width of the image */
+    height: 50px;
+    /* Set the height of the image */
+    margin-right: 10px;
+    /* Optional: Add margin to create space between image and text */
+}
+
+.product-details {
+    /* Add additional styles for product details if needed */
+}
