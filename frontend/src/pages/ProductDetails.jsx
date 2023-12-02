@@ -97,11 +97,28 @@ const StyledButton = styled.button`
   border-radius: 5px; /* Set border radius for rounded corners */
   cursor: pointer;
 `;
+const StatusToggle = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const StatusSymbol = styled.span`
+  font-size: 18px; /* Adjust the font size as needed */
+  margin-right: 5px; /* Add margin for spacing */
+  cursor: pointer;
+
+  &:hover {
+    color: blue; /* Change color on hover if desired */
+  }
+`;
 
 
 const ProductDetails = () => {
     const [data, setProductData] = useState([]);
     const [isModalOpen, setModalOpen] = useState(false);
+    const [isApproved, setApproved] = useState(ProductData.status === 'approved');
+    const [isMissing, setMissing] = useState(ProductData.status === 'missing');
+
 
     // console.log(ProductData)
     useEffect(() => {
@@ -113,11 +130,21 @@ const ProductDetails = () => {
         console.log(item, "elel")
     };
 
-    const closeModal = (el) => {
+    const closeModal = (id) => {
         setModalOpen(false);
 
     };
-    
+    const toggleStatus = (status) => {
+        if (status === 'approved') {
+            setApproved(!isApproved);
+            setMissing(false);
+        } else if (status === 'missing') {
+            setMissing(!isMissing);
+            setApproved(false);
+        }
+        // Add more conditions for other status values if needed
+    };
+
 
   return (
       <MainContainer>
@@ -156,19 +183,20 @@ const ProductDetails = () => {
                           <td>{item.qantity}</td>
                           <td>{item.price * item.qantity}</td>
                          <td>
-                              <td>{item.status === 1 ? "✔" : "✗"}</td>
-                              <td><button onClick={(item) => openModal(item)}>Edit</button></td>
-                              <div>
+                              <td><StatusToggle>
+                                  <StatusSymbol onClick={() => toggleStatus('approved')}>
+                                 ✅  ❌
+                                  </StatusSymbol>
+                                  <StatusSymbol onClick={() => toggleStatus('missing')}>
+                                    
+                                  </StatusSymbol>
+                                  <p>Status: {isApproved ? 'Approved' : isMissing ? 'Missing' : 'Unknown'}</p>
+                              </StatusToggle></td>
+                              
 
-                                  <CustomModal isOpen={isModalOpen} onClose={closeModal}>
-                                      <div>
-                                          {data.map((el) => (
-                                              <div> <h4>{item.title}</h4></div>
-
-                                          ))}
-                                      </div>
-                                  </CustomModal>
-                              </div>
+                                    
+                                    
+                              
                          </td>
                           <div>
 
